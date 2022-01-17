@@ -1,4 +1,4 @@
-# mapboxSpider
+# mapboxspider
 
 ## 简介
 
@@ -7,10 +7,8 @@
 ## 方法
 
 1. 申请`mapbox`账号，获取一个token
-2. 将自身的token替换`main.go`中`<your-token>`
-3. 选取所需要下载的数据的一段URL，拆分成代码中的`baseURL`和`endURL`
+2. 参考`config-example.json`，复制一份`config.json`文件，替换相关内容
 3. 脚本启动下载
-
 4. 下载完之后，可以用`mbutil`这个工具，将数据转换为`mbtiles`数据库
 
 ## 注意

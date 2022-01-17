@@ -1,29 +1,19 @@
 package main
 
 import (
-	"runtime"
 	"sync"
+	"testing"
 )
 
-func main() {
-	runtime.GOMAXPROCS(4)
-
-	var wg sync.WaitGroup
-
+func TestDownloadItem(t *testing.T) {
 	var dc DownloadConfig
-	dc.SaveDir = "./data"
-
-	var para Params
-	GetParamsFromFile("./config.json", &para)
-
 	var mpInfo MapboxInfo
-	mpInfo.Token = para.Token
-	mpInfo.Prefix = para.Satellite.Prefix
-	mpInfo.SKU = para.SKU
-	mpInfo.Format = para.Satellite.Format
-
+	mpInfo.Token = "xxxToken"
+	mpInfo.Prefix = "https://api.mapbox.com/v4/mapbox.satellite/"
+	mpInfo.Format = ".webp"
+	mpInfo.SKU = "sssSDK"
 	data := make(chan URLItem, 10)
-
+	var wg sync.WaitGroup
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
@@ -33,8 +23,6 @@ func main() {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		defer close(data)
-
 		var rule LimitRule
 		rule.MinLon = -100
 		rule.MaxLon = 100

@@ -1,0 +1,19 @@
+# dirs
+data/
+.vscode/
+vendor/
+
+# files
+*.swp
+config.json
+go.work
+
+# binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
