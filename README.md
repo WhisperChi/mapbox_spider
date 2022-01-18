@@ -11,6 +11,21 @@
 3. 脚本启动下载
 4. 下载完之后，可以用`mbutil`这个工具，将数据转换为`mbtiles`数据库
 
+## 命令
+
+```shell
+$ go build .
+$ ./main -c 2 -d "./data" -token "<yourToken>" -sku "<yourSKU>" -t "satellite"
+```
+
+注：部分参数可以写入配置文件中，如`token`,`SKU`等
+
+```shell
+$ ./main -h
+```
+
+注：输入-h参数查看更多解释
+
 ## 注意
 1. 阅读代码，逻辑很简单
 2. 一些参数可调，比如层级、CPU等等
