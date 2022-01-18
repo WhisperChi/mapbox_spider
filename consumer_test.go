@@ -6,7 +6,6 @@ import (
 )
 
 func TestDownloadItem(t *testing.T) {
-	var dc DownloadConfig
 	var mpInfo MapboxInfo
 	mpInfo.Token = "xxxToken"
 	mpInfo.Prefix = "https://api.mapbox.com/v4/mapbox.satellite/"
@@ -17,7 +16,7 @@ func TestDownloadItem(t *testing.T) {
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
-		DownloadItem(dc, mpInfo, data)
+		DownloadItem(mpInfo, data)
 	}()
 
 	wg.Add(1)

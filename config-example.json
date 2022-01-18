@@ -1,18 +1,19 @@
 {
-  "token": "<tokenToBeReplaced>",
-  "sku":"<skuToBeReplaced>",
-  "styles": ["<styleA>", "<styleB>"],
-  "extra":["?sku=","&accesstoken="],
+  "token": "",
+  "sku":"",
   "satellite": {
     "prefix": "https://api.mapbox.com/v4/mapbox.satellite/",
-    "format": ".webp"
+    "format": ".webp",
+    "filesuffix":".webp"
   },
   "street":{
 	  "prefix":"https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/",
-	  "format":".vector.pbf"
+	  "format":".vector.pbf",
+    "filesuffix":".pbf"
   },
   "terrain":{
 	  "prefix":"https://api.mapbox.com/raster/v1/mapbox.mapbox-terrain-dem-v1/",
-	  "format":".webp"
+	  "format":".webp",
+    "filesuffix":".webp"
   }
 }

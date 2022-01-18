@@ -11,18 +11,16 @@ import (
 	"github.com/gocolly/colly"
 )
 
-type DownloadConfig struct {
-	SaveDir string
-}
-
 type MapboxInfo struct {
-	Token  string
-	SKU    string
-	Prefix string
-	Format string
+	Token      string
+	SKU        string
+	Prefix     string
+	Format     string
+	FileSuffix string
+	SaveDir    string
 }
 
-func DownloadItem(config DownloadConfig, mapboxInfo MapboxInfo, data <-chan URLItem) {
+func DownloadItem(mapboxInfo MapboxInfo, data <-chan URLItem) {
 	c := colly.NewCollector(colly.AllowURLRevisit())
 	baseURL := mapboxInfo.Prefix
 	extraParams := "?sku=" + mapboxInfo.SKU + "&access_token=" + mapboxInfo.Token
@@ -36,7 +34,7 @@ func DownloadItem(config DownloadConfig, mapboxInfo MapboxInfo, data <-chan URLI
 		data := r.Body
 		relativePath := strings.Split(r.Request.URL.String(), baseURL)[1]
 		relativePath = strings.Split(relativePath, mapboxInfo.Format+extraParams)[0]
-		path := config.SaveDir + "/" + relativePath + mapboxInfo.Format
+		path := mapboxInfo.SaveDir + "/" + relativePath + mapboxInfo.FileSuffix
 		wg.Add(1)
 		go func() {
 			defer wg.Done()

@@ -2,27 +2,23 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
-	"strings"
 )
 
 type PartURL struct {
-	Prefix string
-	Format string
+	Prefix     string `json:"prefix"`
+	Format     string `json:"format"`
+	FileSuffix string `json:"filesuffix"`
 }
 
 type Params struct {
-	Token  string
-	Styles []string
-	SKU    string
-	// Prefix string
-	// Format string
-	Satellite PartURL
-	Street    PartURL
-	Terrain   PartURL
+	Token     string  `json:"token"`
+	SKU       string  `json:"sku"`
+	Satellite PartURL `json:"satellite"`
+	Street    PartURL `json:"street"`
+	Terrain   PartURL `json:"filesuffix"`
 }
 
 type CmdParams struct {
@@ -41,20 +37,4 @@ func GetParamsFromFile(file string, params *Params) {
 	json.Unmarshal([]byte(byteValue), params)
 
 	defer jsonFile.Close()
-}
-
-func GetParamsFromCmd(cmd string, params *CmdParams) error {
-	split := strings.Split(cmd, "-")
-	cmdParamsMap := make(map[string]string)
-
-	if len(split)%2 != 0 {
-		return errors.New("num of params error")
-	}
-	for i := 0; i < len(split); i++ {
-		cmdParamsMap[split[i]] = split[1]
-	}
-
-	fmt.Println(split)
-
-	return nil
 }
