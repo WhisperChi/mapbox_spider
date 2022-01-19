@@ -10,7 +10,7 @@ import (
 type PartURL struct {
 	Prefix     string `json:"prefix"`
 	Format     string `json:"format"`
-	FileSuffix string `json:"filesuffix"`
+	Filesuffix string `json:"filesuffix"`
 }
 
 type Params struct {

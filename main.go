@@ -68,6 +68,8 @@ func main() {
 		mpInfo.SKU = config.SKU
 	}
 
+	mpInfo.SaveDir = *SaveDir
+
 	aTmp := reflect.ValueOf(&config).Elem()
 	mType := strings.Title(strings.ToLower(*Type))
 	mDetails := aTmp.FieldByName(mType)
