@@ -11,22 +11,24 @@ import (
 )
 
 var (
-	CPUNum  *int
-	SaveDir *string
-	Type    *string
-	Token   *string
-	SKU     *string
-	areaStr *string
-	MinLon  float64
-	MaxLon  float64
-	MinLat  float64
-	MaxLat  float64
-	MinZ    *int
-	MaxZ    *int
+	CPUNum       *int
+	MaxConsumers *int
+	SaveDir      *string
+	Type         *string
+	Token        *string
+	SKU          *string
+	areaStr      *string
+	MinLon       float64
+	MaxLon       float64
+	MinLat       float64
+	MaxLat       float64
+	MinZ         *int
+	MaxZ         *int
 )
 
 func InitPara() {
 	CPUNum = flag.Int("c", 1, "CPU num")
+	MaxConsumers = flag.Int("maxc", 5, "Num of max consumers,this can speed up.")
 	SaveDir = flag.String("d", "./default_download_path", "Path where you wan't to save data")
 	Type = flag.String("t", "satellite", "satellite/street/terrain")
 	Token = flag.String("token", "", "Your mapbox token.")
@@ -82,11 +84,13 @@ func main() {
 	var wg sync.WaitGroup
 	data := make(chan URLItem, 10)
 
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		DownloadItem(mpInfo, data)
-	}()
+	for i := 0; i < *MaxConsumers; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			DownloadItem(mpInfo, data)
+		}()
+	}
 
 	strTmp := *areaStr
 	strArr := strings.Split(strTmp, ",")
