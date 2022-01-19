@@ -2,6 +2,7 @@
 data/
 .vscode/
 vendor/
+default_download_path/
 
 # files
 *.swp

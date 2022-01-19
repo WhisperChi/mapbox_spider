@@ -82,7 +82,13 @@ func main() {
 
 	runtime.GOMAXPROCS(*CPUNum)
 	var wg sync.WaitGroup
-	data := make(chan URLItem, 1000)
+
+	maxChan := *MaxConsumers * 1000
+	if maxChan > 20000 {
+		maxChan = 20000
+	}
+
+	data := make(chan URLItem, maxChan)
 
 	for i := 0; i < *MaxConsumers; i++ {
 		wg.Add(1)

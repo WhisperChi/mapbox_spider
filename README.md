@@ -2,6 +2,8 @@
 
 ## 简介
 
+一秒千张的mapbox图源下载脚本
+
 通过 golang 脚本，快速下载`mapbox账号`配置的 mapbox 的图源，包括：影像、地名、矢量、高程等。
 
 ## 方法
@@ -15,7 +17,7 @@
 
 ```shell
 $ go build .
-$ ./main -c 2 -d "./data" -token "<yourToken>" -sku "<yourSKU>" -t "satellite"
+$ ./main -c 2 -d "./data" -token "<yourToken>" -sku "<yourSKU>" -t "satellite" -maxc=20
 ```
 
 注：部分参数可以写入配置文件中，如`token`,`SKU`等
