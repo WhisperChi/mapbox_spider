@@ -27,7 +27,7 @@ var (
 
 func InitPara() {
 	CPUNum = flag.Int("c", 1, "CPU num")
-	SaveDir = flag.String("d", "./", "Path where you wan't to save data")
+	SaveDir = flag.String("d", "./default_download_path", "Path where you wan't to save data")
 	Type = flag.String("t", "satellite", "satellite/street/terrain")
 	Token = flag.String("token", "", "Your mapbox token.")
 	SKU = flag.String("sku", "", "Your mapbox sku.")
