@@ -11,6 +11,7 @@ func TestDownloadItem(t *testing.T) {
 	mpInfo.Prefix = "https://api.mapbox.com/v4/mapbox.satellite/"
 	mpInfo.Format = ".webp"
 	mpInfo.SKU = "sssSDK"
+	mpInfo.SaveDir = "./testDir"
 	data := make(chan URLItem, 10)
 	var wg sync.WaitGroup
 	wg.Add(1)
