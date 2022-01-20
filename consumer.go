@@ -42,8 +42,6 @@ func DownloadItem(mapboxInfo MapboxInfo, data <-chan URLItem) {
 
 	c.OnError(func(r *colly.Response, err error) {
 		// TODO: save state
-		// relativePath := strings.Split(r.Request.URL.String(), baseURL)[1]
-		// relativePath = strings.Split(relativePath, mapboxInfo.Format+extraParams)[0]
 		fmt.Println("Error,  ", err, " path is ", r.Request.URL.String())
 	})
 
