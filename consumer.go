@@ -28,9 +28,6 @@ func DownloadItem(mapboxInfo MapboxInfo, data <-chan URLItem) {
 	var wg sync.WaitGroup
 
 	c.OnResponse(func(r *colly.Response) {
-		// data := r.Body
-		fmt.Println(r.Request.URL.String())
-
 		data := r.Body
 		relativePath := strings.Split(r.Request.URL.String(), baseURL)[1]
 		relativePath = strings.Split(relativePath, mapboxInfo.Format+extraParams)[0]
