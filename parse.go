@@ -18,12 +18,7 @@ type Params struct {
 	SKU       string  `json:"sku"`
 	Satellite PartURL `json:"satellite"`
 	Street    PartURL `json:"street"`
-	Terrain   PartURL `json:"filesuffix"`
-}
-
-type CmdParams struct {
-	CpuNum   uint
-	MaxPipes uint
+	Terrain   PartURL `json:"terrain"`
 }
 
 func GetParamsFromFile(file string, params *Params) {
